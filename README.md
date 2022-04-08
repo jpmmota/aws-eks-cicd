@@ -21,7 +21,20 @@ cd aws-eks-cicd
 
 3. Build the container image locally and test it
 ```bash
-docker build -t jpmmota/aws-eks-cicd .
-docker run --rm -it -d -p 3000:80 jpmmota/aws-eks-cicd
+docker build -t jpmmota/aws-eks-cicd:latest .
+docker run --rm -it -d -p 3000:80 jpmmota/aws-eks-cicd:latest
 curl localhost:3000
 ```
+4. Create AWS Elastic Container Repository
+```bash
+aws ecr create-repository --repository-name aws-eks-cicd
+```
+
+5. Push docker image to ECR Repository
+```bash
+aws ecr get-login-password --region ca-central-1 | docker login --username AWS --password-stdin 577620766037.dkr.ecr.ca-central-1.amazonaws.com
+docker build -t aws-eks-cicd:1.0 .
+docker tag aws-eks-cicd:1.0 577620766037.dkr.ecr.ca-central-1.amazonaws.com/aws-eks-cicd:1.0
+docker push 577620766037.dkr.ecr.ca-central-1.amazonaws.com/aws-eks-cicd:1.0
+```
+
