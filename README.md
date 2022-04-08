@@ -147,7 +147,7 @@ aws iam put-role-policy --role-name CodeBuildServiceRole --policy-name CodeBuild
 eksctl create iamidentitymapping --cluster eks-cicd --arn <EKS_ROLE_ARN> --group system:masters --username CodeBuildServiceRole
 ```
 
-11. Create deployment.yaml file
+11. Create deployment.yaml and service.yaml files
 
 12. Create buildspec.yaml file that will be used by AWS CodeBuild
 
