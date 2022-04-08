@@ -1,5 +1,5 @@
 # aws-eks-cicd
-Example of a complete DevOps CI/CD pipeline deploying an application on AWS EKS.
+Example of a complete DevOps CI/CD pipeline implementation to deploy an application on AWS EKS.
 
 # Objective
 - Package the [vue3 realworld](https://github.com/mutoe/vue3-realworld-example-app) frontend application into a Docker container image
