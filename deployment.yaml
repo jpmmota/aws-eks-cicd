@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app.kubernetes.io/name: eks-cicd
+    app.kubernetes.io/instance: eks-cicd-instance
+    app.kubernetes.io/version: '1.0.0'
+    app.kubernetes.io/managed-by: kubectl
+  name: eks-cicd-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: eks-cicd
+  template:
+    metadata:
+      labels:
+        app: eks-cicd
+    spec:
+      containers:
+        - image: CONTAINER_IMAGE
+          imagePullPolicy: Always
+          name: eks-cicd
+          ports:
+            - containerPort: 80
