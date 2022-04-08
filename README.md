@@ -151,3 +151,23 @@ eksctl create iamidentitymapping --cluster eks-cicd --arn <EKS_ROLE_ARN> --group
 
 12. Create buildspec.yaml file that will be used by AWS CodeBuild
 
+13. Create AWS CodeBuild project
+- Project name: eks-cicd
+- Source provider: Github
+  - Connect using OAuth
+  - Repository URL: https://github.com/jpmmota/aws-eks-cicd
+- Operating System: Ubuntu
+- Runtime: Standard
+- Image: aws/codebuild/standard:5.0
+- Privileged: check the box
+- Existing Service Role: selected
+  - Provide Role ARN that was previously created
+- Allow AWS CodeBuild to modify this service role so it can be used with this build project: unselected
+
+14. Deploy service and get the load balancer URL to test the application (wait a few minutes until the load balancer becomes available):
+```bash
+kubectl apply -f service.yaml
+kubectl get services eks-cicd
+```
+
+
